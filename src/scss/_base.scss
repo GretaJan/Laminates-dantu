@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+    outline-color: #dededea6;
+    outline-width: 1px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+    font-family: "Timesquare-regular";
+    margin: 0;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: "Timesquare-bold";
+    src: url('../src/fonts/TS-Bold_1.woff') format("woff");
+    font-weight: bold;
+    font-style: 900;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Timesquare-regular";
+    src: url('../src/fonts/TS-regular.woff') format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:  "Timesquare-light";
+    src: url('../src/fonts/TS-light.woff') format("woff");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+	
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    color: $primaryBlue;
+}
+
+$font-sizes-hd: (
+	"h1":  6.1rem,
+	// "h2":  4.2rem,
+    "h2": 4rem,
+    "h3": 4.4rem,
+    "h4": 3.9rem,
+    "h5": 3rem,
+	"p":  3.2rem,
+    "li":  3.2rem,
+    "input": 2rem,
+);
+
+$font-sizes-mobile: (
+	"h1":  4.6rem,
+	"h2":  2.7rem,
+    "h3": 3.7rem,
+    "h4": 3.2rem,
+    "h5": 2.8rem,
+	"p":  2.15rem,
+    "li": 2.15rem,
+    "input": 2.2rem,
+);
+
+$title-width: (
+    "list-section": 85rem,
+    "options-section": 85rem,
+    "testimonial-wrap": 85rem,
+    "slider-section": 60rem,
+);
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+h2, li {
+    text-align: center;
+}
+
+input {
+    color: $primaryBlue
+}
+
+
+.scrolling{
+    pointer-events: none;
+    opacity: 1;
+}
+
+@each $key, $value in $title-width {
+    .#{$key} h2 {
+        max-width: $value;
+    }
+}
+
+#before-after-slide {
+    border-radius: 30px;
+    .beer-reveal {
+        &::before, &::after {
+            display: block;
+            content: '';
+            position: absolute;
+            right: 0;
+            height: calc(50% - 19px);
+            width: 1px;
+            background-color: rgba(255,255,255,.7);
+            right: 0;
+            
+        }
+        &::before {
+            top: 0;
+        }
+        &::after {
+            bottom: 0;
+        }
+    }
+    
+    .beer-handle {
+        width: 38px;
+        height: 38px;
+        &:before, &:after {
+            height: 7px;
+            width: 7px;
+        }
+        &::before {
+            left: 8px;
+        }
+        // border: 1px solid #fff;
+        // background: rgba(0,0,0,0);
+        // margin-left: -1px;
+        // &:before, &:after {
+        //     display: none;
+        // }
+    }
+}
+
+h2 {
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    margin-right: auto;
+    margin-left: auto;
+    line-height: 1.4em;
+    span {
+        font-weight: 900;
+        display: block;
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: .8em;
+
+    span {
+        font-weight: 900
+    }
+}
+
+@each $name, $value in $font-sizes-hd {
+	#{$name} {
+		font-size: $value;
+		@if($name == "h2") {
+			font-weight: bold;
+		} @else {
+			font-weight: 500; 
+		}
+	}
+}
+
+@media #{$mobile} {
+    @each $name, $value in $font-sizes-mobile {
+        #{$name} {
+            font-size: $value;
+            @if($name == "h2") {
+                font-weight: bold;
+            } @else {
+                font-weight: 500; 
+            }
+        }
+    }
+}
+
+@media #{$smallscreen} {
+    h1 {
+        font-size: 3.8rem;
+    }
+}
+
+
+a {
+    text-decoration: none;
+    color: $primaryBlue;
+    // color: $whiteColor;
+    // margin: .2em;
+}
+
+p > span {
+    font-weight: 900;
+}
+
+h1 > span {
+    font-weight: 900;
+}
+
+

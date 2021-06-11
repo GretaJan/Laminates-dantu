@@ -1,0 +1,298 @@
+@mixin mainContainer(){
+    padding: 1vw 4vw;
+    max-width: 180rem;
+
+    @media #{$tablet} {
+        padding-top: 5vw;
+        margin: 0 $mainMargin;
+    }
+}
+
+@mixin contentContainer(){
+    padding: 4vw 2vw;
+
+    @media #{$tablet} {
+        padding: 2vw 2vw; 
+    }
+}
+
+@mixin contentPadding(){
+    padding: 4vw 2vw calc(2vw + 35px) 2vw;
+
+    @media #{$tablet} {
+        padding: 2vw 2vw;
+    }
+}
+
+@mixin transitionCenter(){
+    left: 50%;
+    transform: translate(-50%);
+}
+
+@mixin transitionMiddle(){
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin arrowPseudoElement($width, $height, $degrees, $color, $marginPosition, $margin: 0) {
+    content: '';
+    display: block;
+    width: #{$width};
+    height: #{$height};
+    transform: rotate(#{$degrees}deg);
+    background-color: $color;
+    transition: all 3ms ease-in-out;
+    bottom: 5px;
+    #{$marginPosition}: $margin;
+    position: absolute;
+     bottom: 5px;
+}
+
+@mixin gradientPseudo() {
+    @include gradient-font;
+    font-family: 'Goblin One', cursive;
+    font-size: 12rem;
+    position: absolute;
+
+    @media #{$tablet} {
+        font-size: 17rem;
+    }
+}
+
+
+@mixin arrowInactiveIcon() {
+    $width: 3px;
+    $height: 20px;
+    $color: $primaryBlue;
+    $toRightFirst: -30px;
+    $toRightSec: -17px;
+    $positionName: 'right';
+    &::before {
+        @include arrowPseudoElement($width, $height, 45, $color, $positionName, $toRightFirst);
+    }
+    &::after {
+        @include arrowPseudoElement($width, $height, -45, $color, $positionName, $toRightSec);
+    }
+}
+
+@mixin arrowActiveIcon() {
+    $width: 3px;
+    $height: 20px;
+    $color: $primaryBlue;
+    $toRightFirst: -30px;
+    $toRightSec: -17px;
+    $positionName: 'right';
+    &::before {
+        @include arrowPseudoElement($width, $height, -45, $color, $positionName, $toRightFirst)
+    }
+    &::after {
+        @include arrowPseudoElement($width, $height, 45, $color, $positionName, $toRightSec)
+    }
+}
+
+@mixin arrowLeft(){
+    position: absolute;
+    padding: .5em .5em;
+    $width: 17px;
+    $height: 3px;
+    $color: $whiteColor;
+    $toTopFirst: 10px;
+    $toTopSec: 0;
+    $positionName: 'top';
+    &::before {
+        @include arrowPseudoElement($width, $height, 45, $color, $positionName, $toTopFirst);
+        margin-top: calc(50% - 8px);
+        margin-left: calc(50% - 15px);
+    }
+    &::after {
+        @include arrowPseudoElement($width, $height, -45, $color, $positionName, $toTopSec);
+        margin-top: calc(50% - 8px);
+        margin-left: calc(50% - 15px);
+    }
+}
+
+@mixin arrowRight(){
+    position: absolute;
+    padding: .5em .5em;
+    $width: 17px;
+    $height: 3px;
+    $color: $whiteColor;
+    $toTopFirst: 10px;
+    $toTopSec: 0;
+    $positionName: 'top';
+    &::before {
+        @include arrowPseudoElement($width, $height, -45, $color, $positionName, $toTopFirst);
+        margin-top: calc(50% - 8px);
+        margin-left: calc(50% - 12px);
+    }
+    &::after {
+        @include arrowPseudoElement($width, $height, 45, $color, $positionName, $toTopSec);
+        margin-top: calc(50% - 8px);
+        margin-left: calc(50% - 12px);
+    }
+}
+
+@mixin arrowElement($url) {
+    &::after {
+        content: '';
+        display: block;
+        background-image: url($url);
+        background-repeat: no-repeat;  
+        background-size: 40px auto;
+        width: 40px;
+        height: 30px;
+        position: absolute;
+    }
+}
+
+$boxShadowNormal: 2px 2px 15px rgba(0, 0, 0, .1);
+$boxShadowLighter: 1px 1px 15px rgba(0, 0, 0, .025);
+
+section:not(.slider-section):not(.register-section) {
+    margin-top: 4rem;
+    padding-right: 7vw; 
+    padding-left: 7vw; 
+    @media #{$tablet} {
+        max-width: 2000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+//before after blocks
+
+.logo {
+    max-width: 302px;
+}
+
+header .before-after-blocks {
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    height: 130px;
+    margin-top: -75px;
+    z-index: 5;
+    width: 90%;
+    margin-left: 5%;
+    
+    & > * {
+        @include itemTransition;
+        img {
+            object-fit: contain;
+            width: 100%;
+        }
+    }
+
+    & > *:nth-child(1) {
+        position: relative;
+        transform: translate(-50%);
+        z-index: 0;
+        &:hover {
+            // transform: translate(-100%);
+        }
+        &::after {
+            content: '';
+            background-size: 100%;
+            background-repeat: no-repeat;
+            display: block;
+            top: 0;
+            position: absolute;
+            transform: translate(100%);
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+
+            &:hover {
+                transform: translate(0);
+            }
+        }
+    }
+}
+
+@mixin beforeAfterImgs {
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    height: 130px;
+    
+    & > * {
+        @include itemTransition;
+        img {
+            object-fit: contain;
+            width: 100%;
+        }
+    }
+
+    & > *:nth-child(1) {
+        position: relative;
+        transform: translate(-50%);
+        z-index: 0;
+        &:hover {
+            transform: translate(0);
+        }
+        &::after {
+            content: '';
+            background-size: 100%;
+            background-repeat: no-repeat;
+            display: block;
+            top: 0;
+            position: absolute;
+            transform: translate(100%);
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+
+            &:hover {
+                transform: translate(0);
+            }
+        }
+    }
+}
+
+// @mixin lineAnimationVals($leftOne, $leftTwo, $leftThree, $leftFour, $topOne, $topTwo, $topThree, $topFour){
+//     0% {
+//         left: $leftOne;
+//     }
+//     30% {
+//         left: 30%;
+//     }
+//     60% {
+//         left: 60%;
+//     }
+//     100% {
+//         left: 100%;
+//     }
+// }
+
+@keyframes lineAroundOne {
+    0% {
+        // left: 100%;
+        // bottom: 0;
+    }
+    25% {
+        left: -5px ;
+    }
+    26% {
+        transform: rotate(90deg);
+    }
+    49% {
+        // transform: rotate(90deg);
+    }
+    50% {
+        // left: 0;
+        // bottom: 100%;
+    }
+    // 51% {
+    //     transform: rotate(90deg);
+    // }
+    // 74% {
+    //     transform: rotate(0);
+    // }
+    // 75% {
+    //     left: 100%;
+    //     transform: rotate(0);
+    // }
+    // 100% {
+    //     left: 0%;
+    // }
+}

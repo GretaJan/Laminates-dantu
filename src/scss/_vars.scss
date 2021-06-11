@@ -1,0 +1,52 @@
+$primaryBlue: #146CB9;
+$darkGrey: #707070;
+$lightBlue: #64E8DE;
+$lightBlueOpacity: rgba(100, 232, 222, .4);
+$lightGrey: #ECECEC;
+$purpleColor: #8A64EB;
+$purpleOpacity: rgba(138, 100, 235, .4);
+$whiteColor: #fff;
+$whiteTransparent: rgba(255, 255, 255, .8);
+$successGreen: #6DC790;
+
+$mainMargin: 7vw;
+
+@mixin mainGradient {
+    background-image: linear-gradient(to right, $lightBlueOpacity, $purpleOpacity);
+}
+
+@mixin gradient-font {
+    opacity: .5;
+    background: -webkit-linear-gradient(to right, $lightBlue, $purpleColor);
+    background: linear-gradient(to right, $lightBlue, $purpleColor);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin itemTransition(){
+    transition: transform .3s;
+}
+
+@mixin textMargin{
+    margin-top: 20px;
+}
+
+@mixin dashPseudo(){
+    content: '–';
+    display: block;
+    margin-bottom: -.8em;
+}
+
+$tablet: "only screen and(min-width: 768px)";
+$tabletMax: "only screen and(max-width: 768px)";
+$beforeDesktop: "only screen and(min-width: 945px)";
+$desktop: "only screen and(min-width: 1025px)";
+$mediumDesktop: "only screen and(min-width: 1124px)";
+$wide: "only screen and(min-width: 1216px)";
+$fullhd: "only screen and(min-width: 1408px)";
+$fullhdLarger: "only screen and(min-width: 2010px)";
+$mobile: "only screen and (max-width: 768px)";
+$smallscreen: "only screen and (max-width: 400px)";
+
+
+
